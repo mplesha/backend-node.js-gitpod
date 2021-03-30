@@ -1,3 +1,2 @@
-# Gitpod config to provide the Angular training
+# Backend on Node.js training config for gitpod
 
-Angular 11.2.3
