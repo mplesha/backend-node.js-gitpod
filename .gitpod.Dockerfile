@@ -5,7 +5,7 @@ USER root
 RUN export DEBIAN_FRONTEND=noninteractive \
     && echo 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse' | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
     && apt-get update \
-    && apt-get install -y git curl sudo locales zip unzip mongodb-org\
+    && apt-get install -y git curl sudo locales zip unzip mongodb-org \
     && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* \
