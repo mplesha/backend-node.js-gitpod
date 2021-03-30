@@ -3,11 +3,13 @@ FROM ubuntu:latest
 USER root
 
 RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \
+    && apt-get install -y git curl sudo locales zip unzip \
+    && curl -sL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
     && echo 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse' | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
     && apt-get update \
-    && apt-get install -y git curl sudo locales zip unzip mongodb-org \
     && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
-    && apt-get install -y nodejs \
+    && apt-get install -y nodejs mongodb-org \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* \
     && npm install npm@latest -g \
     && locale-gen en_US.UTF-8
