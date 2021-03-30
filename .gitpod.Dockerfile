@@ -4,7 +4,7 @@ USER root
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
-    && apt-get install -y git curl sudo locales zip unzip \
+    && apt-get install -y git curl sudo locales zip unzip gnupg \
     && curl -sL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
     && echo 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse' | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
     && apt-get update \
