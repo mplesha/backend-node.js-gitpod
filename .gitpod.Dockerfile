@@ -3,17 +3,13 @@ FROM ubuntu:latest
 USER root
 
 RUN export DEBIAN_FRONTEND=noninteractive \
+    && echo 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse' | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
     && apt-get update \
-    && apt-get install -y git curl sudo locales zip unzip \
+    && apt-get install -y git curl sudo locales zip unzip mongodb-org\
     && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs \
-    && curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* \
     && npm install npm@latest -g \
-    && npm install @angular/cli @angular-devkit/core @angular-devkit/schematics @angular-eslint/schematics -g \
     && locale-gen en_US.UTF-8
 
 ENV LANG=en_US.UTF-8
